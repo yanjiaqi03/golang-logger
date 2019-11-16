@@ -6,6 +6,7 @@ import (
 	"crypto/rand"
 	"crypto/md5"
 	"encoding/hex"
+	"net"
 )
 
 //生成Guid字串
@@ -23,4 +24,13 @@ func getMd5String(s string) string {
 	h := md5.New()
 	h.Write([]byte(s))
 	return hex.EncodeToString(h.Sum(nil))
+}
+
+func GetLocalAddress() string {
+	conn, err := net.Dial("udp", "www.google.com.hk:80")
+	if err != nil {
+		return ""
+	}
+	defer conn.Close()
+	return conn.LocalAddr().String()
 }

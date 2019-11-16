@@ -29,30 +29,35 @@ func NewBuilder() (*Builder) {
 		LogLevel: logrus.DebugLevel,
 		LogPath:  "",
 		ElasticHost: "http://localhost:9200",
-		LocalHost: "localhost",
+		LocalHost: utils.GetLocalAddress(),
 	}
 }
 
-func (builder *Builder) SetName(name string) {
+func (builder *Builder) SetName(name string) *Builder {
 	if len(name) > 0 {
 		builder.Name = name
 	}
+	return builder
 }
 
-func (builder *Builder) SetLocalHost(localHost string) {
+func (builder *Builder) SetLocalHost(localHost string) *Builder {
 	builder.LocalHost = localHost
+	return builder
 }
 
-func (builder *Builder) SetLevel(level logrus.Level) {
+func (builder *Builder) SetLevel(level logrus.Level) *Builder {
 	builder.LogLevel = level
+	return builder
 }
 
-func (builder *Builder) SetLogPath(path string) {
+func (builder *Builder) SetLogPath(path string) *Builder {
 	builder.LogPath = path
+	return builder
 }
 
-func (builder *Builder) SetElasticHost(host string) {
+func (builder *Builder) SetElasticHost(host string) *Builder {
 	builder.ElasticHost = host
+	return builder
 }
 
 func (builder *Builder) Build() (*logrus.Logger) {
@@ -93,7 +98,7 @@ func (builder *Builder) Build() (*logrus.Logger) {
 		if err != nil {
 			logger.Panic(err)
 		}
-		elasticHook := hook.NewElasticHook(client, "localhost", builder.LogLevel, builder.Name)
+		elasticHook := hook.NewElasticHook(client, builder.LocalHost, builder.LogLevel, builder.Name)
 		if err != nil {
 			logger.Panic(err)
 		}
