@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"github.com/rifflock/lfshook"
 	"github.com/olivere/elastic"
-	"logger/hook"
-	"logger/utils"
+	"github.com/yanjiaqi03/golang-logger/hook"
+	"github.com/yanjiaqi03/golang-logger/utils"
 )
 
 var logger *logrus.Logger

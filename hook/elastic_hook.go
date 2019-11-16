@@ -6,7 +6,7 @@ import (
 	"context"
 	"time"
 	"strings"
-	"logger/utils"
+	"github.com/yanjiaqi03/golang-logger/utils"
 )
 
 type ElasticHook struct {

@@ -3,7 +3,7 @@ package logger
 import (
 	"github.com/sirupsen/logrus"
 	"github.com/gin-gonic/gin"
-	"logger/utils"
+	"github.com/yanjiaqi03/golang-logger/utils"
 )
 
 const (
