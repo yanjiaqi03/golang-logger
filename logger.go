@@ -28,7 +28,7 @@ func NewBuilder() (*Builder) {
 		Name: "mylog",
 		LogLevel: logrus.DebugLevel,
 		LogPath:  "",
-		ElasticHost: "http://localhost:9200",
+		ElasticHost: "",
 		LocalHost: utils.GetLocalAddress(),
 	}
 }
@@ -94,6 +94,7 @@ func (builder *Builder) Build() (*logrus.Logger) {
 	}
 	if len(builder.ElasticHost) > 0 {
 		// elasticHook
+		elastic.SetSniff(false)
 		client, err := elastic.NewClient(elastic.SetURL(builder.ElasticHost))
 		if err != nil {
 			logger.Panic(err)
