@@ -14,8 +14,10 @@ const (
 func Context(c *gin.Context) ( *logrus.Entry) {
 	entry, _ := c.Get(KEY_ENTRY)
 	if entry == nil {
-		entry = Instance().WithField(KEY_TRACE_ID, utils.UniqueId())
+		var trace_id = utils.UniqueId()
+		entry = Instance().WithField(KEY_TRACE_ID, trace_id)
 		c.Set(KEY_ENTRY, entry)
+		c.Header(KEY_TRACE_ID, trace_id)
 	}
 	return entry.(*logrus.Entry)
 }
