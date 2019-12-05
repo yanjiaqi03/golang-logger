@@ -4,6 +4,10 @@
 
 #### 安装
 ```
+go get github.com/sirupsen/logrus
+go get github.com/lestrrat-go/file-rotatelogs
+go get github.com/rifflock/lfshook
+go get github.com/olivere/elastic
 go get github.com/yanjiaqi03/golang-logger
 ```
 
